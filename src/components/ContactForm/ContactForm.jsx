@@ -1,11 +1,38 @@
 import PropTypes from 'prop-types';
+import { Component } from "react";
+import styles from './ContactForm.module.css'
 
-const ContactForm = () => {
-    return (
-        <form>
+class ContactForm extends Component {
+
+
+
+    state = {
+        name: '',
+        number: '',
+    }
+
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const contact = {
+            name: e.target.name.value.toLocaleLowerCase(),
+            number: e.target.number.value,
+        }
+        this.setState({
+            ...contact
+        })
+        this.props.addContact(contact)
+        e.target.number.value = ''
+        e.target.name.value = ''
+    }
+
+    render() {
+        return (
+        <form onSubmit={this.handleSubmit} className={styles.contactForm}>
             <label htmlFor='username'>NAME</label>
             <input
                 type="text"
+                className={styles.inputName}
                 id='username'
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -15,15 +42,22 @@ const ContactForm = () => {
             <label htmlFor='userNumber'>NUMBER</label>
             <input
                 type="tel"
+                className={styles.inputTel}
                 id='userNumber'
                 name="number"
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
             />
-            <button type='submit'>Add contact</button>
+            <button className={styles.contactFormBtn} type='submit'>Add contact</button>
         </form>
     )
+    }
+    
 }
 
-export {ContactForm}
+export { ContactForm }
+
+ContactForm.propTypes = {
+    addContact: PropTypes.func.isRequired,
+}

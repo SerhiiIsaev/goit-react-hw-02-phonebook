@@ -1,15 +1,23 @@
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid'
 import { ContactListItem } from './ContactItem';
+import styles from './ContactList.module.css'
 
-const ContactList = () => {
+const ContactList = ({ items, removeContact}) => {
+    
+    const Elements = items.map(item => {
+        return(<ContactListItem key={nanoid()} id={item.id} name={item.name} number={item.number} removeContact ={removeContact} />)
+    })
     return (
-        <ul>
-            <ContactListItem />
-            <ContactListItem />
-            <ContactListItem/>
-            
+        <ul className={styles.contactList}>
+            {Elements} 
         </ul>
     )
 }
 
-export {ContactList}
+export { ContactList }
+
+ContactList.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
+    removeContact: PropTypes.func.isRequired,
+}
