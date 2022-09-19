@@ -14,25 +14,18 @@ export default class App extends Component {
 
   onFilterChange = (e) => {
     this.setState({
-      filter: e.target.value.toLocaleLowerCase()
+      filter: e.target.value
     })
   }
 
   getFilteredContacts = () => {
     const { contacts, filter } = this.state
-    let filteredContacts = []
-    if (!filter) {
-      filteredContacts = [...contacts]
-    } else {
-      const filteredItems = contacts.filter(item => item.name.includes(filter))
-      filteredContacts = [...filteredItems]
-    }
-    return filteredContacts
+    return contacts.filter(({name}) => name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
   }
 
   addContact = (contact) => {
     const {contacts} = this.state
-      const chekContact = contacts.filter(item => item.name === contact.name)
+      const chekContact = contacts.filter(item => item.name.toLocaleLowerCase() === contact.name.toLocaleLowerCase())
       if (chekContact.length > 0) {
         return alert(`${contact.name} is already in contacts`)
       } else {
@@ -49,6 +42,17 @@ export default class App extends Component {
     
   }
 
+  handleSubmit = (e) => {
+        e.preventDefault();
+        const contact = {
+            name: e.target.name.value,
+            number: e.target.number.value,
+        }
+        this.addContact(contact);
+        e.target.number.value = '';
+        e.target.name.value = '';
+  }
+
   removeContact = (id) => {
     this.setState((prev) => {
         const newContacts = prev.contacts.filter((item) => item.id !== id);
@@ -63,8 +67,7 @@ export default class App extends Component {
     return(
       <div>
         <h1>Phonebook</h1>
-        <ContactForm addContact={this.addContact}/>
-
+        <ContactForm handleSubmit={this.handleSubmit} />
         <h2>Contacts</h2>
         <Filter onFilterChange={this.onFilterChange} />
         <ContactList items = {data} removeContact={this.removeContact} />
