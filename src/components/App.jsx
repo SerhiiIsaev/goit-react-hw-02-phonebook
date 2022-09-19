@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
@@ -34,7 +34,6 @@ export default class App extends Component {
             id: nanoid(),
           ...contact
         }
-      
         return {
           contacts: [...prev.contacts, newContact]
         }

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './ContactForm.module.css'
+import styles from './ContactForm.module.css';
 
 
 const ContactForm =({handleSubmit})=> {

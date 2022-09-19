@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
-import styles from './Filter.module.css'
+import styles from './Filter.module.css';
 
 const Filter = ({onFilterChange}) => {
     return (

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { ContactListItem } from './ContactItem';
-import styles from './ContactList.module.css'
+import styles from './ContactList.module.css';
 
 const ContactList = ({ items, removeContact}) => {
     

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './ContactList.module.css'
+import styles from './ContactList.module.css';
 
 
 const ContactListItem = ({id, name, number, removeContact}) => {
