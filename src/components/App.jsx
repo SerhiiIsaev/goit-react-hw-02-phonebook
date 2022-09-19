@@ -39,7 +39,6 @@ export default class App extends Component {
           contacts: [...prev.contacts, newContact]
         }
       })}
-    
   }
 
   handleSubmit = (e) => {
