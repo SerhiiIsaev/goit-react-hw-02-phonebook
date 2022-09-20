@@ -66,7 +66,7 @@ export default class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
         <h2>Contacts</h2>
-        <Filter onFilterChange={this.onFilterChange} />
+        <Filter onFilterChange={this.onFilterChange} filter = {this.state.filter} />
         <ContactList items = {data} removeContact={this.removeContact} />
       </div>
     )
